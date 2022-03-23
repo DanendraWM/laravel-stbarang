@@ -1,0 +1,267 @@
+.kbw-signature {
+    width: 100%;
+    height: 200px;
+}
+
+.judul {
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+}
+
+#sig canvas {
+    width: 100% !important;
+    height: auto;
+}
+
+#sig {
+    cursor: crosshair;
+}
+
+#sig2 canvas {
+    width: 100% !important;
+    height: auto;
+}
+
+#sig2 {
+    cursor: crosshair;
+}
+
+#side {
+    background-image: url('ill.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    margin-top: 80px;
+}
+
+#confirm {
+    background-image: url('confirm.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    /* margin-top: 80px; */
+}
+
+#detail {
+    background-image: url('detail.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    /* margin-top: 80px; */
+}
+
+.kartu {
+    /* border: 3px solid black; */
+    background-color: whitesmoke;
+    padding: 20px 3px 3px 30px;
+    border-radius: 5px;
+    box-shadow: 1px 10px 10px #ccc;
+}
+
+.forms {
+    /* border: 3px solid black; */
+    background-color: mintcream;
+    padding: 20px 10px 3px 10px;
+    border-radius: 5px;
+    width: 70%;
+    box-shadow: 1px 10px 10px #ccc;
+}
+
+/* .kartu:hover {
+    background-color: whitesmoke;
+    box-shadow: 1px 10px 10px #ccc;
+
+} */
+
+
+#sidelanjutan {
+    background-image: url('input.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    margin-top: 100px;
+}
+
+.slj {
+    margin-top: 10px;
+}
+
+.nf {
+    background-image: url('nf.png');
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    margin: auto;
+}
+
+.nf h1 {
+    margin-top: 300px;
+    font-weight: 400;
+}
+
+.nf h2 {
+    font-weight: 300;
+}
+
+#side {
+    margin-top: 10px;
+}
+
+.garis {
+    margin-top: 7px;
+    border-left: 3px solid rgb(0, 0, 0);
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.hr-sect {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    margin: 8px 0px;
+}
+
+.hr-sect::before,
+.hr-sect::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 8px;
+}
+
+.image_detail {
+    width: 200px;
+    height: 200px;
+}
+
+.kunci {
+
+    background-color: lightblue;
+    border-top-left-radius: 11px;
+    border-bottom-left-radius: 11px;
+    height: 400px;
+    width: 90%;
+    color: white;
+    /* margin-left: 100px; */
+}
+
+.gmbr {
+    background-image: url('log.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 100%;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.gmbr_txt {
+    margin-left: 30px;
+}
+
+.garis_log {
+    margin-top: 30px;
+    background-color: rgba(47, 79, 79, 0.247);
+    height: 3px;
+    width: 100px;
+}
+
+.garis_log2 {
+    background-color: rgba(47, 79, 79, 0.247);
+    height: 3px;
+    width: 280px;
+}
+
+.formlog {
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    /* margin-right: 300px; */
+}
+
+.outln {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 13px;
+    box-shadow: 1px 10px 10px #ccc;
+}
+
+.img_pfr {
+    width: 30px;
+    height: 30px;
+}
+
+.usid {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+@media(max-width:990px) {
+    .garis {
+        display: none;
+    }
+}
+
+@media(max-width:450px) {
+    #side {
+        display: none;
+    }
+
+    .outln {
+        border-radius: 0;
+        border: 0.3px solid rgba(0, 0, 0, 0.5);
+    }
+
+    #sidelanjutan {
+        display: none;
+    }
+
+    .kunci {
+        display: none;
+    }
+
+    .formlog {
+        margin-top: 0;
+    }
+
+    .forms {
+        width: 100%;
+    }
+
+    .berupa {
+        font-size: 30px;
+    }
+
+
+    .hr-sect, #sig, #clear, #sig2, #clear2, .ttd {
+        display: none;
+    }
+
+    .judul_detail {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+    .tgl {
+        display: flex;
+    }
+
+    .image_detail {
+        width: 100px;
+        height: 100px;
+    }
+
+    /*
+    h2 {
+        font-size: 90%;
+    }
+
+    h4 {
+        font-size: 50%;
+    } */
+}
