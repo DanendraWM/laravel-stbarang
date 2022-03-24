@@ -6,7 +6,7 @@
     <form action="/" method="post">
         @csrf
         <div class="row tgl m-auto py-2">
-            <label for="from" class="mx-3 pt-1">Dari dsadawd : </label>
+            <label for="from" class="mx-3 pt-1">Dari : </label>
             <input type="date" class="form-control col-md-2" id="from" name="from" max="{{ date('Y-m-d') }}"
                 value="{{ date('Y-m-d') }}" required>
             <label for=" to" class="mx-3 pt-1">sampai : </label>
@@ -46,6 +46,8 @@
                                     title="download file"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                                 <a href="/detail/{{ $fm->id }}" class="btn btn-primary" title="info detail"><i
                                         class="bi bi-eye-fill"></i></a>
+                                        <a href="/edit/{{ $fm->id }}" class="btn btn-success" title="info detail"><i
+                                        class="bi bi-pen-fill"></i></a>
                                 @auth
                                     @if (auth()->user()->level === 'admin')
                                             <a href="/hapus/{{ $fm->id }}" onclick="return confirm('Yakin ingin hapus?')"

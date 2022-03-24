@@ -39,7 +39,15 @@ setlocale(LC_ALL, 'IND');
     }
 
     .wi {
-        width: 30%;
+        width: 35%;
+    }
+
+    .geser {
+        padding-right: 105px;
+    }
+
+    .geser2 {
+        padding-left: 16px;
     }
 
 </style>
@@ -59,7 +67,6 @@ setlocale(LC_ALL, 'IND');
                     <p>Jabatan: {{ strtoupper($pihak->jabatan1) }}</p>
                     <p>Instansi : {{ strtoupper($pihak->instansi1) }}</p>
                     <p>Alamat: {{ strtoupper($pihak->alamat1) }}</p>
-                    <p>Selanjutnya disebut <span class=" font-weight-bold">PIHAK PERTAMA</span></p>
                 </div>
                 <div class="float-right mr-2 wi">
                     <p>Nama : {{ strtoupper($nama2) }}</p>
@@ -67,9 +74,19 @@ setlocale(LC_ALL, 'IND');
                     <p>Jabatan: {{ strtoupper($pihak->jabatan2) }}</p>
                     <p>Instansi : {{ strtoupper($pihak->instansi2) }}</p>
                     <p>Alamat: {{ strtoupper($pihak->alamat2) }}</p>
-                    <p>Selanjutnya disebut <span class=" font-weight-bold">PIHAK KEDUA</span></p>
+                </div> 
+            </div> <br>
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <p class="geser2">Selanjutnya disebut <span class=" font-weight-bold">PIHAK PERTAMA</span></p>
+                    </div>
+                    <div class="float-right">
+                        <p class="geser">Selanjutnya disebut <span class=" font-weight-bold">PIHAK KEDUA</span></p>
+                    </div>
                 </div>
             </div>
+
             <br>
             <p align="center">Dengan ini menyatakan bahwa <span class=" font-weight-bold">PIHAK PERTAMA</span>
                 telah menyerahkan

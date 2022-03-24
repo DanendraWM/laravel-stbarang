@@ -27,8 +27,11 @@ route::group(['middleware' => ['auth']], function () {
     Route::get('/form', [frontController::class, 'form']);
     Route::post('/form', [frontController::class, 'upload']);
     Route::get('/form/lanjutan', [frontController::class, 'formlanjutan']);
-    Route::get('/ubah/11/15', [frontController::class, 'formLanjutanEdit']);
+    Route::get('/ubah/{id}/{pihak}', [frontController::class, 'formLanjutanEdit']);
+    Route::post('/ubah/{id}/{pihak}', [frontController::class, 'postLanjutanEdit']);
     Route::get('/add/{id}', [frontController::class, 'addBarang']);
+    Route::get('/edit/{id}', [frontController::class, 'editForm']);
+    Route::post('/edit/{id}', [frontController::class, 'editPost']);
     Route::post('/form/lanjutan', [frontController::class, 'postlanjutan']);
     Route::post('/form/{er}', [frontController::class, 'postlanjutan']);
     route::get('/print/{id}', [frontController::class, 'print']);

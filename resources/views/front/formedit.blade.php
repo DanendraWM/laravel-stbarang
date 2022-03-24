@@ -1,6 +1,6 @@
 @extends('main.layout')
 @section('isi')
-    <p class="h2" align="center">ACARA SERAH TERIMA BARANG</p>
+    <p class="h2" align="center">EDIT ACARA SERAH TERIMA BARANG</p>
     <hr width="50%">
     <div class="row">
         <div class="col-md-6" id="side">
@@ -10,12 +10,12 @@
             <div class="card-body">
                 <p class="h4" align="center">Dari pihak Pertama</p>
                 {{-- <a class="btn btn-primary mb-3" href="/table">data</a> --}}
-                <form method="POST" action="/form" enctype="multipart/form-data">
+                <form method="POST" action="/edit/{{$pihak->id}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="nama">Nama : </label>
                         <input type="text" placeholder="udin" class="form-control @error('nama') is-invalid @enderror"
-                            required name="nama" id="nama">
+                            required name="nama" id="nama" value="{{$pihak->nama1}}">
                         @error('nama')
                             <div class="invalid-feedback">
                                 <p> {{ $message }} </p>
@@ -25,7 +25,7 @@
                     <div class="form-group">
                         <label for="phone">Nomor HP : </label>
                         <input type="tel" placeholder="081212341234"
-                            class="form-control @error('phone') is-invalid @enderror" required name="phone" id="phone">
+                            class="form-control @error('phone') is-invalid @enderror" required name="phone" id="phone"  value="{{$pihak->phone1}}">
                         {{-- <input placeholder="081212341234" type="text" maxlength="12"
                                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                                 class="form-control " required name="phone" id="phone"> --}}
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <label for="jabatan">Jabatan : </label>
                         <input type="text" class="form-control @error('jabatan') is-invalid @enderror" placeholder="manager"
-                            required name="jabatan" id="jabatan">
+                            required name="jabatan" id="jabatan"  value="{{$pihak->jabatan1}}">
                         @error('jabatan')
                             <div class="invalid-feedback">
                                 <p> {{ $message }} </p>
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label for="instansi">instansi : </label>
                         <input type="text" class="form-control @error('instansi') is-invalid @enderror" required
-                            name="instansi" placeholder="telkom" id="instansi">
+                            name="instansi" placeholder="telkom" id="instansi"  value="{{$pihak->instansi1}}">
                         @error('instansi')
                             <div class="invalid-feedback">
                                 <p> {{ $message }} </p>
@@ -58,14 +58,16 @@
                     <div class="form-group">
                         <label for="alamat">Alamat : </label>
                         <input type="text" class="form-control @error('alamat') is-invalid @enderror" required name="alamat"
-                            placeholder="Jl. merdeka selatan" id="alamat" maxlength="53">
+                            placeholder="Jl. merdeka selatan" id="alamat" maxlength="53"  value="{{$pihak->alamat1}}">
                         @error('alamat')
                             <div class="invalid-feedback">
                                 <p> {{ $message }} </p>
                             </div>
                         @enderror
                     </div>
-                    <label>Signature:</label>
+                    <label>Old Signature:</label>
+                    <img src="{{asset('/image/ttd/'.$pihak->ttd1)}}" >
+                    <label>New Signature:</label>
                     <div class="ttd">
                         <div id="sig" class="form-control @error('signed') is-invalid @enderror"></div>
                         @error('signed')
@@ -98,7 +100,7 @@
                 <div class="form-group">
                     <label for="nama">Nama : </label>
                     <input type="text" class="form-control @error('nama2') is-invalid @enderror" placeholder="asep" required
-                        name="nama2" id="nama">
+                        name="nama2" id="nama"  value="{{$pihak->nama2}}">
                     @error('nama2')
                         <div class="invalid-feedback">
                             <p> {{ $message }} </p>
@@ -108,7 +110,7 @@
                 <div class="form-group">
                     <label for="phone">Nomor HP : </label>
                     <input type="tel" placeholder="081212341234" class="form-control @error('phone2') is-invalid @enderror"
-                        required name="phone2" id="phone">
+                        required name="phone2" id="phone"  value="{{$pihak->phone2}}">
                     {{-- <input placeholder="081212341234" type="text" maxlength="12"
                             onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                             class="form-control " required name="phone2" id="phone"> --}}
@@ -121,7 +123,7 @@
                 <div class="form-group">
                     <label for="jabatan">Jabatan : </label>
                     <input type="text" class="form-control @error('jabatan2') is-invalid @enderror" placeholder="staff"
-                        required name="jabatan2" id="jabatan">
+                        required name="jabatan2" id="jabatan"  value="{{$pihak->jabatan2}}">
                     @error('jabatan2')
                         <div class="invalid-feedback">
                             <p> {{ $message }} </p>
@@ -131,7 +133,7 @@
                 <div class="form-group">
                     <label for="instansi">instansi : </label>
                     <input type="text" class="form-control @error('instansi') is-invalid @enderror" required
-                        name="instansi2" placeholder="telkom" id="instansi">
+                        name="instansi2" placeholder="telkom" id="instansi"  value="{{$pihak->instansi2}}">
                     @error('instansi')
                         <div class="invalid-feedback">
                             <p> {{ $message }} </p>
@@ -141,14 +143,16 @@
                 <div class="form-group">
                     <label for="alamat">Alamat : </label>
                     <input type="text" class="form-control @error('alamat2') is-invalid @enderror"
-                        placeholder="jl. kehidupan" required name="alamat2" id="alamat">
+                        placeholder="jl. kehidupan" required name="alamat2" id="alamat"  value="{{$pihak->alamat2}}">
                     @error('alamat2')
                         <div class="invalid-feedback">
                             <p> {{ $message }} </p>
                         </div>
                     @enderror
                 </div>
-                <label>Signature:</label>
+                <label>Old Signature:</label>
+                <img src="{{asset('/image/ttd/'.$pihak->ttd2)}}" >
+                <label>New Signature:</label>
                 <div class="ttd">
                     <div id="sig2" class="form-control @error('signed2') is-invalid @enderror"></div>
                     @error('signed2')
@@ -178,9 +182,8 @@
     </div>
     <hr>
     <div class="form-group container">
-        <label class="col-md-10 mx-auto">Keperluan Penyerahan barang : </label>
         <input type="textarea" class="form-control col-md-10 d-flex mx-auto"
-            placeholder="Keterangan, CTH : Diserahkan ke sabang" required name="keterangan" id="keterangan" required>
+            placeholder="Keterangan, CTH : Diserahkan ke sabang" value="{{$pihak->keterangan}}" required name="keterangan" id="keterangan" required>
         @error('keterangan')
             <div class="invalid-feedback">
                 <p> {{ $message }} </p>

@@ -178,11 +178,130 @@ class frontController extends Controller
         $barang = barang::where('pihak_id', $usid)->count();
         return view('front.formlanjutan', compact('usid', 'barang'), ['title' => 'add']);
     }
-    public function formLanjutanEdit()
+    public function editForm($id)
     {
-        $usid = 11;
-        $barang = 15;
-        return view('front.formlanjutanubah', compact('usid', 'barang'), ['title' => 'ubah']);
+        $pihak = form::find($id);
+        return view('front.formedit',compact('pihak'),['title'=>'Edit']);
+    }
+    public function editPost($id ,Request $request)
+    {
+        $form = form::find($id);
+        $usid = $form->id;
+        $request->validate([
+            // 'signed' => 'required',
+            // 'signed2' => 'required',
+            'phone' => 'numeric',
+            'phone2' => 'numeric',
+        ], [
+            // 'signed.required' => 'Harap isi tanda tangan',
+            // 'signed2.required' => 'Harap isi tanda tangan',
+            'phone.numeric' => 'harap isi dengan nomor',
+            'phone2.numeric' => 'harap isi dengan nomor',
+        ]);
+        $folderPath = public_path('image/ttd/');
+        $image_parts = explode(";base64,", $request->signed);
+        $image_parts2 = explode(";base64,", $request->signed2);
+        if ($image_parts === [""] && $request->ttdimg === null) {
+            $filename=$form->ttd1;
+        } else if ($image_parts !== [""] && $request->ttdimg !== null) {
+            $file = $request->ttdimg;
+            $slug = Str::slug($request->nama);
+            $filename = $slug . $usid . '.' . $file->extension();
+            $file->move(public_path('image/ttd'), $filename);
+        } else if ($image_parts !== [""]) {
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $file = $folderPath . $request->nama . $form->id . '.' . $image_type;
+            $filename = $request->nama . $usid . '.' . $image_type;
+            file_put_contents($file, $image_base64);
+        } else {
+            $file = $request->ttdimg;
+            $slug = Str::slug($request->nama);
+            $filename = $slug . $usid . '.' . $file->extension();
+            $file->move(public_path('image/ttd'), $filename);
+        }
+        // di bawah pihak kedua
+        if ($image_parts2 === [""] && $request->ttdimg2 === null) {
+            $filename2=$form->ttd2;
+        } else if ($image_parts2 !== [""] && $request->ttdimg2 !== null) {
+            $file = $request->ttdimg2;
+            $slug = Str::slug($request->nama2);
+            $filename2 = $slug . $usid . '.' . $file->extension();
+            $file->move(public_path('image/ttd'), $filename2);
+        } else if ($image_parts2 !== [""]) {
+            $image_type_aux2 = explode("image/", $image_parts2[0]);
+            $image_type2 = $image_type_aux2[1];
+            $image_base642 = base64_decode($image_parts2[1]);
+            $file2 = $folderPath . $request->nama2 . $form->id . '.' . $image_type2;
+            $filename2 = $request->nama2 . $usid . '.' . $image_type2;
+            file_put_contents($file2, $image_base642);
+        } else {
+            $file = $request->ttdimg2;
+            $slug = Str::slug($request->nama2);
+            $filename2 = $slug . $usid . '.' . $file->extension();
+            $file->move(public_path('image/ttd'), $filename2);
+        }
+        // return $image_parts === [""] ? "kosong" : "oke";
+        $form->nama1 = $request->nama;
+        $form->nama2 = $request->nama2;
+        $form->jabatan1 = $request->jabatan;
+        $form->jabatan2 = $request->jabatan2;
+        $form->instansi1 = $request->instansi;
+        $form->instansi2 = $request->instansi2;
+        $form->alamat1 = $request->alamat;
+        $form->alamat2 = $request->alamat2;
+        $form->phone1 = $request->phone;
+        $form->phone2 = $request->phone2;
+        $form->ttd1 = $filename;
+        $form->ttd2 = $filename2;
+        $form->keterangan = $request->keterangan;
+        // return $form;
+        $form->update();
+        Alert::success('berhasil', 'Berhasil ubah data');
+        return redirect('/')->with('success', 'success Full upload signature');
+    }
+    public function formLanjutanEdit($id,$relasi)
+    {
+        $barang = barang::where('id', $relasi)->where('pihak_id', $id)->first();
+        $usid=form::find($id);
+        return view('front.formlanjutanubah', compact('usid','relasi', 'barang'), ['title' => 'ubah']);
+    }
+    public function postLanjutanEdit($id,$relasi,Request $request)
+    {
+        $request->validate([
+            'nama' => ['required', 'min:3', 'max:40'],
+            'merek' => ['required', 'min:3'],
+            'gambar' => ['required', 'mimes:jpeg,png,jpg', 'max:1000'],
+            'sn' => ['required', 'min:3'],
+            'pemilik' => ['required', 'min:3'],
+        ], [
+            'nama.required' => 'Nama barang harus di isi',
+            'merek.required' => 'Merek barang harus di isi',
+            'gambar.required' => 'harus ada gambar barang',
+            'gambar.mimes' => 'tipe file kondisi barang harus : jpeg,png,jpg',
+            'sn.required' => 'barang harus memiliki serial number',
+            'pemilik.required' => 'Pemilik barang harus di isi',
+        ]);
+        $barang = barang::find($id);
+        $usid=$barang->id;
+        $file = $request->gambar;
+        $slug = Str::slug($request->nama);
+        $filename = $slug . $usid . '.' . $file->extension();
+        $file->move(public_path('image/kondisi'), $filename);
+        $barang->pihak_id = $request->pihak_id;
+        $barang->nama_barang = $request->nama;
+        $barang->merek = $request->merek;
+        $barang->sn = $request->sn;
+        // if ($request->ua=== null) {
+        //     $barang->ua='-';
+        // }else{
+        // }
+        $barang->kondisi = $filename;
+        $barang->pemilik = $request->pemilik;
+        $barang->save();
+        Alert::success('berhasil masukan data', 'Jika ingin tambah data, masukan data dan tekan tambah barang, Jika ingin mengakhiri tekan selesai');
+        return back()->with('pesan', 'Berhasil');
     }
     function print($id) {
         $pihak = form::find($id);
