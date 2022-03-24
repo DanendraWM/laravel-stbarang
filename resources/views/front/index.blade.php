@@ -6,7 +6,7 @@
     <form action="/" method="post">
         @csrf
         <div class="row tgl m-auto py-2">
-            <label for="from" class="mx-3 pt-1">Dari mananya : </label>
+            <label for="from" class="mx-3 pt-1">Dari dsadawd : </label>
             <input type="date" class="form-control col-md-2" id="from" name="from" max="{{ date('Y-m-d') }}"
                 value="{{ date('Y-m-d') }}" required>
             <label for=" to" class="mx-3 pt-1">sampai : </label>
