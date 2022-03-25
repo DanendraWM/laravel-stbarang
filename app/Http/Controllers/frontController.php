@@ -265,6 +265,7 @@ class frontController extends Controller
     {
         $barang = barang::where('id', $relasi)->where('pihak_id', $id)->first();
         $usid=form::find($id);
+        $usid= $usid->id;
         return view('front.formlanjutanubah', compact('usid','relasi', 'barang'), ['title' => 'ubah']);
     }
     public function postLanjutanEdit($id,$relasi,Request $request)
@@ -272,13 +273,12 @@ class frontController extends Controller
         $request->validate([
             'nama' => ['required', 'min:3', 'max:40'],
             'merek' => ['required', 'min:3'],
-            'gambar' => ['required', 'mimes:jpeg,png,jpg', 'max:1000'],
+            'gambar' => [ 'mimes:jpeg,png,jpg', 'max:1000'],
             'sn' => ['required', 'min:3'],
             'pemilik' => ['required', 'min:3'],
         ], [
             'nama.required' => 'Nama barang harus di isi',
             'merek.required' => 'Merek barang harus di isi',
-            'gambar.required' => 'harus ada gambar barang',
             'gambar.mimes' => 'tipe file kondisi barang harus : jpeg,png,jpg',
             'sn.required' => 'barang harus memiliki serial number',
             'pemilik.required' => 'Pemilik barang harus di isi',
@@ -287,21 +287,33 @@ class frontController extends Controller
         $usid=$barang->id;
         $file = $request->gambar;
         $slug = Str::slug($request->nama);
-        $filename = $slug . $usid . '.' . $file->extension();
-        $file->move(public_path('image/kondisi'), $filename);
+        if (!$file === null) {
+            $filename = $slug . $usid . '.' . $file->extension();
+            $file->move(public_path('image/kondisi'), $filename);
+            $barang->kondisi = $filename;
+        } 
         $barang->pihak_id = $request->pihak_id;
         $barang->nama_barang = $request->nama;
         $barang->merek = $request->merek;
         $barang->sn = $request->sn;
-        // if ($request->ua=== null) {
-        //     $barang->ua='-';
-        // }else{
-        // }
-        $barang->kondisi = $filename;
         $barang->pemilik = $request->pemilik;
-        $barang->save();
+        $barang->update();
         Alert::success('berhasil masukan data', 'Jika ingin tambah data, masukan data dan tekan tambah barang, Jika ingin mengakhiri tekan selesai');
-        return back()->with('pesan', 'Berhasil');
+        return redirect('/detail/'.$id)->with('pesan', 'Berhasil');
+    }
+    public function formLanjutanHapus($id,$relasi)
+    {
+        $barang = barang::where('id', $relasi)->where('pihak_id', $id)->first();
+        if ($barang === null) {
+            Alert::error('Id tidak di temukan', 'Jangan bandel ya');
+            return redirect('/')->with('bandel', 'bandel');
+        }
+        if ($barang != "") {
+            unlink(public_path('image/kondisi') . '\\' . $barang->kondisi);
+        }
+        $barang->delete();
+        Alert::success('berhasil hapus data', 'Terima Kasih');
+        return redirect()->back();
     }
     function print($id) {
         $pihak = form::find($id);

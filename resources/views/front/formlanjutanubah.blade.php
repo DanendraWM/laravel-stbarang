@@ -7,7 +7,7 @@
             <div class="col-md-6 m-auto">
                 <div class="card-body">
                     {{-- <a class="btn btn-primary mb-3" href="/table">data</a> --}}
-                    <form method="POST" action="/form/{{$usid}}/{{$reid}}" enctype="multipart/form-data">
+                    <form method="POST" action="/ubah/{{$usid}}/{{$relasi}}" enctype="multipart/form-data">
                         @csrf
                         <input type="number" value="{{ $usid }}" name="pihak_id" class="usid">
                         <div class="form-group">
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label for="gambar">Kondisi barang lama: </label>
                             <img src="{{asset('/image/kondisi/'.$barang->kondisi)}}" class="img-fluid">
-                            <label for="gambar">Kondisi barang new: </label>
+                            <label for="gambar">Kondisi barang baru: </label>
                             <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar"
                                 id="gambar" >
                             <small>Image Type : jpeg,jpg,png</small>
