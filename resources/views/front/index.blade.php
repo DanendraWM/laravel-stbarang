@@ -17,8 +17,13 @@
         </div>
     </form>
     <hr>
-    {{-- <input type="text" name="search" id="search" class="form-control">
-    <div id="search_list"></div> --}}
+    <form action="/" method="POST">
+    @csrf
+        <div class="row mx-auto">
+            <input type="text" name="search" id="search" placeholder="cari nama" class="form-control col-md-10">
+            <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
     @if ($form->count())
         {{-- <a class="btn btn-danger my-2" href="/deleteAll" onclick="return confirm('Yakin Ingin Hapus?')">Delete All</a> --}}
         <div class="table-responsive">

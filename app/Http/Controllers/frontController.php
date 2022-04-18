@@ -21,6 +21,9 @@ class frontController extends Controller
         if ($request->from and $request->to) {
             $form = form::where('created_at', '>=', $request->from)->where('created_at', '<=', $request->to)->latest()->paginate(4)->withQueryString();
         }
+        if ($request->search){
+            $form = form::where('nama1', 'like', '%' . $request->search . '%')->orWhere('nama2', 'like', '%' . $request->search . '%')->latest()->paginate(6)->withQueryString();
+        }
         return view('front.index', compact('form'), ['title' => 'home']);
         // return $form[1]->created_at;
     }

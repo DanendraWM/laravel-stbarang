@@ -18,7 +18,7 @@ class BackupDatabase extends Command
      *
      * @var string
      */
-    protected $description = 'Database telah di backup';
+    protected $description = 'untuk backup Database ';
 
     /**
      * Create a new command instance.
