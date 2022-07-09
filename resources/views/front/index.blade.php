@@ -19,7 +19,7 @@
     <hr>
     <form action="/" method="POST">
     @csrf
-        <div class="row mx-auto">
+        <div class="row mx-auto mb-2">
             <input type="text" name="search" id="search" placeholder="cari nama" class="form-control col-md-10">
             <button class="btn btn-primary"><i class="bi bi-search"></i></button>
         </div>

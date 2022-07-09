@@ -35,7 +35,6 @@ route::group(['middleware' => ['auth']], function () {
     Route::post('/edit/{id}', [frontController::class, 'editPost']);
     Route::post('/form/lanjutan', [frontController::class, 'postlanjutan']);
     Route::post('/form/{er}', [frontController::class, 'postlanjutan']);
-    route::get('/print/{id}', [frontController::class, 'print']);
     route::get('/detail/{id}', [frontController::class, 'detail']);
     route::get('/hapus/{id}', [frontController::class, 'hapus']);
     route::get('/deleteAll', [frontController::class, 'deleteAll']);
@@ -43,6 +42,8 @@ route::group(['middleware' => ['auth']], function () {
     route::get('/double', [frontController::class, 'double']);
     route::get('cari', [frontController::class, 'search']);
 });
+    route::get('/print/{id}', [frontController::class, 'print']);
+
 // Route::get('/form2', [frontController::class,'form2']);
 // Route::post('/form2', [frontController::class,'upload2']);
 route::get('/{err}', [frontController::class, 'err']);

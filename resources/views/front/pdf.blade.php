@@ -8,8 +8,7 @@ setlocale(LC_ALL, 'IND');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>print</title>
 </head>
 <style>
@@ -59,39 +58,31 @@ setlocale(LC_ALL, 'IND');
         <p align="center" style="font-size: 10px;">BERITA ACARA SERAH TERIMA BARANG</p>
         <p>Kami yang bertanda tangan di bawah ini, Pada
             {{ $pihak->created_at->formatLocalized('%A, %d %B %Y') }} : </p>
-        <div class="container">
-            <div class="row mx-auto">
-                <div class="ml-3 wi">
-                    <p>Nama : {{ strtoupper($nama1) }}</p>
-                    <p>Nomor HP : {{ strtoupper($pihak->phone1) }}</p>
-                    <p>Jabatan: {{ strtoupper($pihak->jabatan1) }}</p>
-                    <p>Instansi : {{ strtoupper($pihak->instansi1) }}</p>
-                    <p>Alamat: {{ strtoupper($pihak->alamat1) }}</p>
-                </div>
-                <div class="float-right mr-2 wi">
-                    <p>Nama : {{ strtoupper($nama2) }}</p>
-                    <p>Nomor HP : {{ strtoupper($pihak->phone2) }}</p>
-                    <p>Jabatan: {{ strtoupper($pihak->jabatan2) }}</p>
-                    <p>Instansi : {{ strtoupper($pihak->instansi2) }}</p>
-                    <p>Alamat: {{ strtoupper($pihak->alamat2) }}</p>
-                </div> 
-            </div> <br>
             <div class="container">
-                <div class="row">
-                    <div>
-                        <p class="geser2">Selanjutnya disebut <span class=" font-weight-bold">PIHAK PERTAMA</span></p>
+                <div class="row align-items-center">
+                    <div class="float-left">
+                        <p>Nama : {{ strtoupper($nama1) }}</p>
+                        <p>Nomor HP : {{ strtoupper($pihak->phone1) }}</p>
+                        <p>Jabatan: {{ strtoupper($pihak->jabatan1) }}</p>
+                        <p>Instansi : {{ strtoupper($pihak->instansi1) }}</p>
+                        <p>Alamat: {{ strtoupper($pihak->alamat1) }}</p>
                     </div>
                     <div class="float-right">
-                        <p class="geser">Selanjutnya disebut <span class=" font-weight-bold">PIHAK KEDUA</span></p>
-                    </div>
-                </div>
+                        <p>Nama : {{ strtoupper($nama2) }}</p>
+                        <p>Nomor HP : {{ strtoupper($pihak->phone2) }}</p>
+                        <p>Jabatan: {{ strtoupper($pihak->jabatan2) }}</p>
+                        <p>Instansi : {{ strtoupper($pihak->instansi2) }}</p>
+                        <p>Alamat: {{ strtoupper($pihak->alamat2) }}</p>
+                    </div> 
+                </div> 
             </div>
-
             <br>
-            <p align="center">Dengan ini menyatakan bahwa <span class=" font-weight-bold">PIHAK PERTAMA</span>
-                telah menyerahkan
-                kepada <span class=" font-weight-bold">PIHAK KEDUA</span> berupa : </p>
-            <table border="1" width="100%">
+            
+            <div style="margin-top: 120px">
+                <p align="center">Dengan ini menyatakan bahwa <span class=" font-weight-bold">PIHAK PERTAMA</span>
+                    telah menyerahkan
+                    kepada <span class=" font-weight-bold">PIHAK KEDUA</span> berupa : </p>
+            <table border="1" width="100%" >
                 <thead>
                     <tr>
                         <th rowspan="2" style="text-align:center">No</th>
@@ -126,11 +117,11 @@ setlocale(LC_ALL, 'IND');
                     @endforeach
                 </tbody>
             </table>
+            </div>
+            
             <p> *note : {{ $pihak->keterangan }}</p>
             <p>Demikian berita acara serah terima barang ini dibuat oleh kedua kedua belah pihak, adapun
                 barang-barang tersebut dalam keadaan baik dan cukup serta dapat dipergunakan sebagai mestinya</p>
-        </div>
-        {{-- <p>Tanggal : {{ $pinjambarang->created_at->format('D, d M Y') }}</p> --}}
         <div class="row align-items-center">
             <div class="float-left ml-4">
                 <p align="center">PIHAK PERTAMA</p>
