@@ -24,7 +24,8 @@ class frontController extends Controller
         if ($request->search){
             $form = form::where('nama1', 'like', '%' . $request->search . '%')->orWhere('nama2', 'like', '%' . $request->search . '%')->latest()->paginate(6)->withQueryString();
         }
-        return view('front.index', compact('form'), ['title' => 'home']);
+        $ip=$request->ip();
+        return view('front.index', compact('form','ip'), ['title' => 'home']);
         // return $form[1]->created_at;
     }
     public function double()

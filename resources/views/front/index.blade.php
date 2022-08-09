@@ -17,8 +17,9 @@
         </div>
     </form>
     <hr>
+    {{ $ip }}
     <form action="/" method="POST">
-    @csrf
+        @csrf
         <div class="row mx-auto mb-2">
             <input type="text" name="search" id="search" placeholder="cari nama" class="form-control col-md-10">
             <button class="btn btn-primary"><i class="bi bi-search"></i></button>
@@ -51,12 +52,12 @@
                                     title="download file"><i class="bi bi-file-earmark-arrow-down-fill"></i></a>
                                 <a href="/detail/{{ $fm->id }}" class="btn btn-primary" title="info detail"><i
                                         class="bi bi-eye-fill"></i></a>
-                                        <a href="/edit/{{ $fm->id }}" class="btn btn-success" title="info detail"><i
+                                <a href="/edit/{{ $fm->id }}" class="btn btn-success" title="info detail"><i
                                         class="bi bi-pen-fill"></i></a>
                                 @auth
                                     @if (auth()->user()->level === 'admin')
-                                            <a href="/hapus/{{ $fm->id }}" onclick="return confirm('Yakin ingin hapus?')"
-                                                class="btn btn-danger" title="info detail"><i class="bi bi-trash-fill"></i></a>
+                                        <a href="/hapus/{{ $fm->id }}" onclick="return confirm('Yakin ingin hapus?')"
+                                            class="btn btn-danger" title="info detail"><i class="bi bi-trash-fill"></i></a>
                                     @else
                                     @endif
                                 @endauth
