@@ -291,7 +291,7 @@ class frontController extends Controller
         $usid=$barang->id;
         $file = $request->gambar;
         $slug = Str::slug($request->nama);
-        if (!$file === null) {
+        if ($file !== null) {
             $filename = $slug . $usid . '.' . $file->extension();
             $file->move(public_path('image/kondisi'), $filename);
             $barang->kondisi = $filename;
