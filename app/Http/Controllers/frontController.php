@@ -19,7 +19,7 @@ class frontController extends Controller
         // $date->settings(['formatFunction' => 'translatedFormat']);
         $form = form::latest()->paginate(4)->withQueryString();
         if ($request->from and $request->to) {
-            $form = form::where('created_at', '>=', $request->from)->where('created_at', '<=', $request->to)->latest()->paginate(4)->withQueryString();
+            $form = form::where('created_at', '>=', $request->from)->where('created_at', '<=', $request->to)->latest()->paginate(10)->withQueryString();
         }
         if ($request->search){
             $form = form::where('nama1', 'like', '%' . $request->search . '%')->orWhere('nama2', 'like', '%' . $request->search . '%')->latest()->paginate(6)->withQueryString();
